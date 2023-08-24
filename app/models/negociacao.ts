@@ -1,28 +1,18 @@
 export class Negociacao {
-    // atributos privados de uma classe devem ser declarados assim:
-    private _data: Date;
-    private _quantidade: number;
-    private _valor: number;
+    // atributos privados de uma classe podem ser declarados assim:
+    constructor(
+        private _data: Date, 
+        public readonly quantidade: number, 
+        public readonly valor: number 
+    ) {}
 
-    constructor(data: Date, quantidade: number, valor: number ) {
-        this._data = data;
-        this._quantidade = quantidade;
-        this._valor = valor;
+    get volume(): number {
+        return this.valor * this.quantidade;
     }
 
     get data(): Date {
-        return this._data;
-    }
-
-    get quantidade(): number {
-        return this._quantidade;
-    }
-
-    get valor(): number {
-        return this._valor;
-    }
-
-    get volume(): number {
-        return this._valor * this._quantidade;
+        // programação defensiva XD
+        const data = new Date(this._data.getTime())
+        return data;
     }
 }
