@@ -14,9 +14,7 @@ export class NegociacoesView extends View {
                 ${model.lista().map(negociacao => {
             return `
                         <tr>
-                            <td>${new Intl.DateTimeFormat()
-                .format(negociacao.data)}
-                            </td>
+                            <td>${this.formatarData(negociacao.data)}</td>
                             <td>${negociacao.quantidade}</td>
                             <td>${negociacao.valor}</td>
                         </tr>
@@ -25,5 +23,9 @@ export class NegociacoesView extends View {
             </tbody>
         </table>
         `;
+    }
+    formatarData(data) {
+        return new Intl.DateTimeFormat()
+            .format(data);
     }
 }
